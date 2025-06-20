@@ -24,7 +24,15 @@ main_mod.doy_feature_names_out = doy_feature_names_out
 sys.modules["__main__"] = main_mod
 
 import joblib
-model = joblib.load("water_predictor_model_v3.pkl")
+
+model = None
+
+def get_model():
+    global model
+    if model is None:
+        model = joblib.load("water_predictor_model_v3.pkl")
+    return model
+model = get_model()
 
 # ─────── KC table stays the same ────────────────────────────────────────────
 kc_table = {
